@@ -156,6 +156,9 @@ function updateTrafficData() {
             baseWorkToHome = Math.max(15, Math.min(90, Math.round(distance * 2.8)));
             
             console.log(`Tempos recalculados para novos endereços: ${baseHomeToWork}min / ${baseWorkToHome}min`);
+            
+            // Atualizar descrições das rotas no card
+            updateRouteDescriptions(config.homeAddress, config.workAddress);
         }
     }
     
@@ -163,6 +166,24 @@ function updateTrafficData() {
     let homeToWorkTime = baseHomeToWork;
     let workToHomeTime = baseWorkToHome;
     let efficiency = 85;
+
+function updateRouteDescriptions(homeAddress, workAddress) {
+    const widget = document.getElementById('traffic-widget-simple');
+    if (!widget) return;
+    
+    const routeDescriptions = widget.querySelectorAll('.text-secondary');
+    
+    if (routeDescriptions.length >= 2) {
+        routeDescriptions[0].textContent = `${getShortAddress(homeAddress)} → ${getShortAddress(workAddress)}`;
+        routeDescriptions[1].textContent = `${getShortAddress(workAddress)} → ${getShortAddress(homeAddress)}`;
+    }
+}
+
+function getShortAddress(address) {
+    if (!address) return 'Endereço não definido';
+    const parts = address.split(',');
+    return parts[0].trim();
+}
     
     // Horário de pico manhã (7:00-9:30)
     if (currentTime >= 7*60 && currentTime <= 9.5*60) {

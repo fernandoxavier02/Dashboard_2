@@ -47,6 +47,16 @@ class TrafficIntensityKPI {
                         </div>
                     </div>
                     
+                    <!-- Ponteiro Visual -->
+                    <div class="kpi-pointer-container">
+                        <div class="kpi-pointer" id="kpi-pointer"></div>
+                        <div class="kpi-scale">
+                            <span class="kpi-scale-label" style="left: 0%;">Leve</span>
+                            <span class="kpi-scale-label" style="left: 50%;">Moderado</span>
+                            <span class="kpi-scale-label" style="left: 100%;">Pesado</span>
+                        </div>
+                    </div>
+                    
                     <!-- KPIs por Rota -->
                     <div class="kpi-routes">
                         <div class="kpi-route-item">
